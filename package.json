@@ -1,0 +1,36 @@
+{
+  "name": "react-semantic-ui",
+  "version": "1.11.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fixBabel": "rm -rf node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/lodash"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morlay/react-semantic-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morlay/react-semantic-ui/issues"
+  },
+  "homepage": "https://github.com/morlay/react-semantic-ui",
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "chai": "^2.2.0",
+    "gulp": "",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-less": "^3.0.2",
+    "gulp-util": "^3.0.4",
+    "jsdom": "^3.1.2",
+    "less-plugin-autoprefix": "^1.4.1",
+    "lodash": "^3.6.0",
+    "mocha": "^2.2.1",
+    "semantic-ui-less": "^1.11.6",
+    "through": "^2.3.6"
+  }
+}
