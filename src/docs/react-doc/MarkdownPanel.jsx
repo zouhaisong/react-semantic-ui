@@ -1,5 +1,5 @@
 var React = require('react');
-var R = require('ramda');
+var _ = require('lodash');
 
 var marked = require('marked');
 
@@ -15,7 +15,7 @@ var MarkdownPanel = React.createClass({
 
   $render() {
 
-    if (R.is(String)(this.props.codeText)) {
+    if (_.isString(this.props.codeText)) {
       return <div {...this.props}
         block={this.$$block}
         dangerouslySetInnerHTML={{__html: marked(this.props.codeText)}}

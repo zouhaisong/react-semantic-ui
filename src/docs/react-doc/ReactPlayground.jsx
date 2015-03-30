@@ -1,5 +1,5 @@
 var React = require('react');
-var R = require('ramda');
+var _ = require('lodash');
 
 var CodeMirrorEditor = require('./CodeMirrorEditor.jsx');
 var JSXTransformer = require('react/dist/JSXTransformer');
@@ -41,7 +41,7 @@ var ReactPlayground = React.createClass({
     return {
       mode: this.MODES.NONE,
       code: this.props.codeText,
-      requires: R.merge({
+      requires: _.merge({
         React: React
       }, this.props.requires)
     };
@@ -147,10 +147,10 @@ var ReactPlayground = React.createClass({
         var Inst;
 
         eval(
-          'Inst = function(' + R.join(',', R.keys(this.state.requires)) + '){\n' + compiledCode + '\n};'
+          'Inst = function(require){\n' + compiledCode + '\n};'
         );
 
-        Inst.apply(null, R.values(this.state.requires));
+        Inst.call(null, this.props.globalRequire);
 
       }
     } catch (err) {

@@ -56,9 +56,9 @@ const defaultConfig = {
 
 let conf;
 
-define(); // init
+setOptions(); // init
 
-export function define(opts) {
+export function setOptions(opts) {
   conf = _.merge({}, defaultConfig, opts)
 }
 

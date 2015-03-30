@@ -1,5 +1,5 @@
 var React = require('react');
-var R = require('ramda');
+var _ = require('lodash');
 
 var ReactPlayground = require('./ReactPlayground.jsx');
 var MarkdownPanel = require('./MarkdownPanel.jsx');
@@ -13,7 +13,7 @@ var DocSection = React.createClass({
     var info = this.props.info;
 
     return (
-      <div {...this.props} block={this.$$block} >
+      <div {...this.props} block={this.$$block}>
         <h2 elem='title'>{info.name}
           <small elem='sub-title'>{info.module}</small>
         </h2>
@@ -31,26 +31,25 @@ var DocSection = React.createClass({
     var exampleRequires = [];
 
     if (propItem.exampleRequires) {
-      exampleRequires = R.map(
-        R.prop('name')
-      )(propItem.exampleRequires)
+      exampleRequires = _.map(propItem.exampleRequires, function (item) {
+        return item.name
+      });
     }
 
-    return R.mapIndexed((example, idx)=> {
+    return _.map(propItem.examples || [], (example, idx)=> {
       return (<ReactPlayground
         key={idx}
         elem
-        requires={R.pick(R.concat([this.props.info.name], exampleRequires))(requireList)}
+        requires={_.pick(requireList, _.concat([this.props.info.name], exampleRequires))}
         codeText={example}/>)
-    })(propItem.examples || []);
-
+    });
   },
 
   renderProperty(property) {
 
-    return R.pipe(
-      R.values,
-      R.mapIndexed((propItem, idx)=> {
+    return _(property)
+      .values()
+      .map((propItem, idx)=> {
         return (
           <div block='doc-section-prop' key={idx}>
             <h3 elem='title'> Property: {propItem.name}
@@ -61,16 +60,18 @@ var DocSection = React.createClass({
           </div>
         )
       })
-    )(property)
+      .value();
+
   },
 
   processType(typeObject) {
 
     if ('elements' in typeObject) {
-      return R.pipe(
-        R.map(R.curry(this.processType)),
-        R.join('|')
-      )(typeObject.elements)
+      return _(typeObject.elements)
+        .map((obj)=> {
+          this.processType(obj);
+        })
+        .join('|')
     }
 
     return typeObject.name

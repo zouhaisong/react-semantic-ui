@@ -1,5 +1,5 @@
 var React = require('react');
-var R = require('ramda');
+var _ = require('lodash');
 
 var DocSection = require('./DocSection.jsx');
 
@@ -15,51 +15,51 @@ var ReactDoc = React.createClass({
 
   $render() {
     return (
-      <div {...this.props} block={this.$$block} >
-      {this.renderDocMain()}
-      {this.renderDocMenu()}
+      <div {...this.props} block={this.$$block}>
+        {this.renderDocMain()}
+        {this.renderDocMenu()}
       </div>
     );
   },
 
   renderDocMenu() {
 
-    var menuList = R.pipe(
-      R.values,
-      R.mapIndexed(function (item, idx) {
+    var menuList = _(this.props.info)
+      .values()
+      .map((item, idx)=> {
         return (
           <li elem='doc-menu-item' key={idx}>
             <a href={'#' + item.module + '.' + item.name}> {item.name}</a>
           </li>)
       })
-    )(this.props.info);
+      .value()
 
     return (
       <ul elem='doc-menu'>
-      {menuList}
+        {menuList}
       </ul>
     )
   },
 
   renderDocMain() {
 
-    var docSectionList = R.pipe(
-      R.values,
-      R.mapIndexed((item, idx)=> {
+    var docSectionList = _(this.props.info)
+      .values()
+      .map((item, idx)=> {
         return (
           <DocSection
             key={idx}
             id={item.module + '.' + item.name}
             requires={this.props.requires}
             info={item}
-          />
+            />
         )
       })
-    )(this.props.info);
+      .value();
 
     return (
       <main elem='doc-main'>
-      {docSectionList}
+        {docSectionList}
       </main>
     )
   }
