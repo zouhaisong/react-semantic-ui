@@ -41,17 +41,13 @@ let conf;
 
 setOptions(); // init
 
-export function setOptions(opts) {
-  conf = _.merge({}, defaultConfig, opts)
-}
-
 const TASK_NAME = 'browserify';
 
-export default gulp.task(TASK_NAME, function () {
+const task = gulp.task(TASK_NAME, function () {
 
   function bundleThis(fileConf = {}) {
 
-    fileConf.entry =  path.join(process.cwd(), fileConf.entry);
+    fileConf.entry = path.join(process.cwd(), fileConf.entry);
     fileConf.options = _.merge({}, conf.options, fileConf.options);
 
     const isVendor = /vendor\.js$/.exec(fileConf.entry);
@@ -110,6 +106,14 @@ export default gulp.task(TASK_NAME, function () {
   return mergeSteam.apply(gulp, _.map(conf.files, bundleThis));
 
 });
+
+task.setOptions = setOptions;
+
+export default task;
+
+function setOptions(opts) {
+  conf = _.merge({}, defaultConfig, opts)
+}
 
 function wrapWithPluginError(originalError) {
   var message, opts;

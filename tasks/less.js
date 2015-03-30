@@ -58,13 +58,10 @@ let conf;
 
 setOptions(); // init
 
-export function setOptions(opts) {
-  conf = _.merge({}, defaultConfig, opts)
-}
 
 const TASK_NAME = 'less';
 
-export default gulp.task(TASK_NAME, function () {
+const task = gulp.task(TASK_NAME, function () {
 
   function bundleThis(fileConf = {}) {
 
@@ -89,7 +86,12 @@ export default gulp.task(TASK_NAME, function () {
 
   return mergeSteam.apply(gulp, _.map(conf.files, bundleThis));
 
-})
+});
 
+task.setOptions = setOptions;
 
+export default task;
 
+function setOptions(opts) {
+  conf = _.merge({}, defaultConfig, opts)
+}
