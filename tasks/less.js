@@ -1,6 +1,7 @@
 import path from 'path'
 import _ from 'lodash'
 import gulp from 'gulp'
+import mergeSteam from 'merge-stream'
 
 import gutil from 'gulp-util'
 import less from 'gulp-less'
@@ -11,16 +12,33 @@ import LessPluginPathRedirect from './libs/LessPluginPathRedirect';
 import watcher from './libs/watcher'
 
 const defaultConfig = {
-  'entry': [
-    'semantic/semantic.less'
+  'files': [
+    {
+      'entry': 'semantic/semantic.less',
+      'src': [
+        'semantic/{,**/}*{.less, .overrides, .variables}',
+      ],
+      'dest': 'public/assets/css',
+      'options': {
+        'watch': false
+      }
+
+    },
+    {
+      'entry': 'src/docs*/index.less',
+      'src': [
+        'src/{,**/}*{.less, .overrides, .variables}'
+      ],
+      'dest': 'public/assets/css',
+      'options': {
+        'watch': true
+      }
+    }
   ],
-  'src': [
-    'semantic/{,**/}*{.less, .overrides, .variables}'
-  ],
-  'dest': 'public/assets/css',
   'options': {
     'paths': [
       path.join(process.cwd(), 'node_modules/semantic-ui-less'),
+      path.join(process.cwd(), 'node_modules'),
       path.join(process.cwd(), 'semantic')
     ],
     'plugins': [
@@ -48,21 +66,29 @@ const TASK_NAME = 'less';
 
 export default gulp.task(TASK_NAME, function () {
 
-  function bundle() {
-    return gulp.src(conf.entry)
-      .pipe(less(conf.options))
-      .pipe(gulp.dest(conf.dest))
-      .pipe(watcher.pipeTimer(TASK_NAME))
+  function bundleThis(fileConf = {}) {
+
+    fileConf.options = _.merge({}, conf.options, fileConf.options);
+
+    function bundle() {
+      return gulp.src(fileConf.entry)
+        .pipe(less(fileConf.options))
+        .pipe(gulp.dest(fileConf.dest))
+        .pipe(watcher.pipeTimer(TASK_NAME))
+    }
+
+    if (fileConf.options.watch && watcher.isWatching()) {
+      gulp.watch([].concat(fileConf.src), function (evt) {
+        gutil.log(evt.path, evt.type);
+        bundle();
+      });
+    }
+
+    return bundle();
   }
 
-  if (watcher.isWatching()) {
-    gulp.watch([].concat(conf.src), function (evt) {
-      gutil.log(evt.path, evt.type);
-      bundle();
-    });
-  }
+  return mergeSteam.apply(gulp, _.map(conf.files, bundleThis));
 
-  return bundle();
 })
 
 

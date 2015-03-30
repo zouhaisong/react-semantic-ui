@@ -30,6 +30,7 @@
     "jsdom": "^3.1.2",
     "less-plugin-autoprefix": "^1.4.1",
     "lodash": "^3.6.0",
+    "merge-stream": "^0.1.7",
     "mocha": "^2.2.1",
     "react-docgen": "^1.1.0",
     "semantic-ui-less": "^1.11.6",
