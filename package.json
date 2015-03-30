@@ -3,7 +3,7 @@
   "version": "1.11.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -R spec --compilers js:babel/register tasks/libs/jsdom.js --check-leaks components/**/*.spec.js",
     "fixBabel": "rm -rf node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/lodash"
   },
   "engines": {
@@ -22,6 +22,7 @@
   "devDependencies": {
     "babel": "^4.7.16",
     "chai": "^2.2.0",
+    "classnames": "^1.2.0",
     "gulp": "",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-less": "^3.0.2",
@@ -30,7 +31,11 @@
     "less-plugin-autoprefix": "^1.4.1",
     "lodash": "^3.6.0",
     "mocha": "^2.2.1",
+    "react-docgen": "^1.1.0",
     "semantic-ui-less": "^1.11.6",
     "through": "^2.3.6"
+  },
+  "dependencies": {
+    "react": "^0.13.1"
   }
 }
