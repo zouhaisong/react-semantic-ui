@@ -1,22 +1,20 @@
 import gulp from 'gulp';
 import _ from 'lodash';
 import path from 'path';
-import del from 'del'
+import ghPages from 'gh-pages'
 
 const defaultConfig = {
-  src: [
-    'public'
-  ]
+  src: 'public'
 };
 
 let conf;
 
 setOptions(); // init
 
-const TASK_NAME = 'clean';
+const TASK_NAME = 'gh-pages';
 
-const task =  gulp.task(TASK_NAME, (cb)=> {
-  del(conf.src, cb);
+const task = gulp.task(TASK_NAME, (cb)=> {
+  ghPages.publish(path.join(process.cwd(), conf.src), cb);
 });
 
 task.setOptions = setOptions;

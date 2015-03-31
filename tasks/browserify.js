@@ -11,6 +11,9 @@ import mergeSteam from 'merge-stream'
 
 import gutil from 'gulp-util'
 
+import streamify from 'gulp-streamify'
+import uglify from 'gulp-uglify'
+
 import watcher from './libs/watcher'
 
 const vendors = [
@@ -97,6 +100,7 @@ const task = gulp.task(TASK_NAME, function () {
           pathObj.dirname = path.relative('src', pathObj.dirname);
           pathObj.extname = '.js';
         }))
+        .pipe(whenInProductionDoUglify())
         .pipe(gulp.dest(fileConf.dest))
     }
 
@@ -126,4 +130,12 @@ function wrapWithPluginError(originalError) {
     throw new Error(message);
   }
   return new gutil.PluginError('watchify', message);
+}
+
+function whenInProductionDoUglify() {
+  return process.env.NODE_ENV === 'production' || gutil.env.debug ? streamify(uglify({
+    compress: {
+      pure_funcs: ['console.log']
+    }
+  })) : gutil.noop()
 }

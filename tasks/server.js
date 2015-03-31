@@ -4,6 +4,8 @@ import gulp from 'gulp'
 import mergeSteam from 'merge-stream'
 import browserSync from 'browser-sync'
 
+import compress from 'compression'
+
 import gutil from 'gulp-util'
 
 
@@ -14,8 +16,17 @@ const defaultConfig = {
     './public/{,**/}*.*'
   ],
   'options': {
-    server: './public',
-    port: 3000
+    server: {
+      baseDir: './public',
+      port: 3000,
+      middleware: [
+        (process.env.NODE_ENV === 'production' || gutil.env.debug) ? compress() : middlewareNope()
+      ]
+    },
+    ui: {
+      port: 9999
+    }
+
   }
 };
 
@@ -41,4 +52,10 @@ export default task;
 
 function setOptions(opts) {
   conf = _.merge({}, defaultConfig, opts)
+}
+
+function middlewareNope() {
+  return (req, res, next)=> {
+    return next()
+  }
 }

@@ -17,6 +17,11 @@ var Button = React.createClass({
      */
     color: PropTypes.string,
     /**
+     * size of Button
+     * @exampleFile ./examples/ButtonWithSize.jsx
+     */
+    size: PropTypes.string,
+    /**
      * icon in Button
      */
     icon: PropTypes.string,
@@ -27,22 +32,59 @@ var Button = React.createClass({
     iconLabeled: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
-    ])
+    ]),
+    /**
+     * fluid button
+     * @example
+
+     var React = require('react');
+     var Button = require('./Button.jsx');
+
+     var instance = (
+     <div>
+       <Button fluid> black </Button>
+     </div> );
+
+     React.render(instance, mountNode);
+
+     */
+    fluid: PropTypes.bool,
+    /**
+     * circular button ( **notice**: no effect with labeled )
+     * @example
+
+     var React = require('react');
+     var Button = require('./Button.jsx');
+
+     var instance = (
+     <div>
+       <Button icon='cloud' circular> circular button </Button>
+       <Button icon='cloud' circular/>
+     </div> );
+
+     React.render(instance, mountNode);
+
+     */
+    circular: PropTypes.bool
   },
 
   render() {
 
     const props = this.props;
+
     const classes = {
+      'fluid': !!props.fluid,
+      [props.size]: true,
       'ui': true,
       'right': props.iconLabeled == 'right',
       'labeled': !!props.iconLabeled,
-      'icon': !!props.icon
+      'circular': !!props.circular,
+      'icon': !!props.icon,
+      [props.color]: true,
+      'button': true
     };
 
-    props.color && (classes[props.color] = true);
-
-    classes['button'] = true;
+    delete classes[undefined];
 
     return (
       <button className={classnames(classes)}>
