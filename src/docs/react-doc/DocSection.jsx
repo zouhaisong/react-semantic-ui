@@ -56,12 +56,12 @@ var DocSection = React.createClass({
 
   processType(typeObject) {
 
-    if ('elements' in typeObject) {
-      return _(typeObject.elements)
+    if ('value' in typeObject) {
+      return _(typeObject.value)
         .map((obj)=> {
-          this.processType(obj);
+          return this.processType(obj);
         })
-        .join('|')
+        .join(' | ')
     }
 
     return typeObject.name

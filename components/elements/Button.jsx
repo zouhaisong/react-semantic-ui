@@ -12,26 +12,41 @@ var Button = React.createClass({
 
   propTypes: {
     /**
-     * type name of Icon, will same as the filename.
+     * color of Button
+     * @exampleFile ./examples/ButtonWithColor.jsx
+     */
+    color: PropTypes.string,
+    /**
+     * icon in Button
+     */
+    icon: PropTypes.string,
+    /**
+     * labeled icon
      * @exampleFile ./examples/ButtonWithIcon.jsx
      */
-    icon: PropTypes.string
+    iconLabeled: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+    ])
   },
 
   render() {
 
     const props = this.props;
-    const classes = {};
+    const classes = {
+      'ui': true,
+      'right': props.iconLabeled == 'right',
+      'labeled': !!props.iconLabeled,
+      'icon': !!props.icon
+    };
 
-    classes['ui'] = true;
-
-    props.icon && (classes['icon'] = true);
+    props.color && (classes[props.color] = true);
 
     classes['button'] = true;
 
     return (
       <button className={classnames(classes)}>
-        { props.icon ? <Icon type={props.icon}/> :'' }
+        { props.icon ? <Icon type={props.icon}/> : '' }
         { props.children }
       </button>
     )
