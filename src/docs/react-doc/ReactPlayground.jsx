@@ -40,10 +40,7 @@ var ReactPlayground = React.createClass({
   getInitialState() {
     return {
       mode: this.MODES.NONE,
-      code: this.props.codeText,
-      requires: _.merge({
-        React: React
-      }, this.props.requires)
+      code: this.props.codeText
     };
   },
 
@@ -155,7 +152,7 @@ var ReactPlayground = React.createClass({
       }
     } catch (err) {
       this.setTimeout(()=> {
-        console.error(err.toString())
+        console.error(err)
       }, 500);
     }
   }

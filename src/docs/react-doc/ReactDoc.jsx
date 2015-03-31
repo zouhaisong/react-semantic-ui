@@ -9,7 +9,7 @@ var ReactDoc = React.createClass({
   ],
 
   propTypes: {
-    requires: React.PropTypes.object,
+    globalRequire: React.PropTypes.func,
     info: React.PropTypes.object
   },
 
@@ -50,7 +50,7 @@ var ReactDoc = React.createClass({
           <DocSection
             key={idx}
             id={item.module + '.' + item.name}
-            requires={this.props.requires}
+            globalRequire={this.props.globalRequire}
             info={item}
             />
         )

@@ -3,7 +3,6 @@ import _ from 'lodash';
 import path from 'path';
 import runSequence from 'run-sequence';
 
-const taskName = 'build';
 
 const defaultConfig = {
   taskQueue: []
@@ -13,7 +12,9 @@ let conf;
 
 setOptions(); // init
 
-const task = gulp.task(taskName, (cb)=> {
+const TASK_NAME = 'build';
+
+const task = gulp.task(TASK_NAME, (cb)=> {
   runSequence.apply(gulp, [].concat(conf.taskQueue).concat(cb));
 });
 

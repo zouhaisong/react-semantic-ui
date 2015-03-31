@@ -6,8 +6,8 @@ import mergeSteam from 'merge-stream'
 import gutil from 'gulp-util'
 import less from 'gulp-less'
 
-import LessPluginAutoPrefix from 'less-plugin-autoprefix';
-import LessPluginPathRedirect from './libs/LessPluginPathRedirect';
+import LessPluginAutoPrefix from 'less-plugin-autoprefix'
+import LessPluginPathRedirect from './libs/LessPluginPathRedirect'
 
 import watcher from './libs/watcher'
 
@@ -16,7 +16,7 @@ const defaultConfig = {
     {
       'entry': 'semantic/semantic.less',
       'src': [
-        'semantic/{,**/}*{.less, .overrides, .variables}',
+        'semantic/{,**/}*{.less, .overrides, .variables}'
       ],
       'dest': 'public/assets/css',
       'options': {
@@ -57,7 +57,6 @@ const defaultConfig = {
 let conf;
 
 setOptions(); // init
-
 
 const TASK_NAME = 'less';
 

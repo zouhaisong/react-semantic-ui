@@ -3,8 +3,6 @@ import _ from 'lodash';
 import path from 'path';
 import del from 'del'
 
-const taskName = 'clean';
-
 const defaultConfig = {
   files: [
     'public'
@@ -15,7 +13,9 @@ let conf;
 
 setOptions(); // init
 
-const task =  gulp.task(taskName, (cb)=> {
+const TASK_NAME = 'clean';
+
+const task =  gulp.task(TASK_NAME, (cb)=> {
   del(conf.files, cb);
 });
 

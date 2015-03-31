@@ -19,40 +19,30 @@ var DocSection = React.createClass({
         </h2>
         <MarkdownPanel elem='desc' codeText={info.description}/>
         {this.renderExamples(info)}
-        {info.property ? this.renderProperty(info.property) : ''}
+        {info.props ? this.renderProps(info.props) : ''}
       </div>
     );
   },
 
   renderExamples(propItem) {
-
-    var requireList = this.props.requires;
-
-    var exampleRequires = [];
-
-    if (propItem.exampleRequires) {
-      exampleRequires = _.map(propItem.exampleRequires, function (item) {
-        return item.name
-      });
-    }
-
-    return _.map(propItem.examples || [], (example, idx)=> {
+    return _.map(propItem.examples || [], (exampleItem, idx)=> {
       return (<ReactPlayground
         key={idx}
         elem
-        requires={_.pick(requireList, _.concat([this.props.info.name], exampleRequires))}
-        codeText={example}/>)
+        globalRequire={this.props.globalRequire}
+        codeText={exampleItem.contents}/>)
     });
   },
 
-  renderProperty(property) {
+  renderProps(props) {
 
-    return _(property)
-      .values()
-      .map((propItem, idx)=> {
+    return _(props)
+      .keys()
+      .map((key, idx)=> {
+        const propItem = props[key];
         return (
           <div block='doc-section-prop' key={idx}>
-            <h3 elem='title'> Property: {propItem.name}
+            <h3 elem='title'> Prop: {key}
               <small elem='sub-title'> Type: {this.processType(propItem.type)}</small>
             </h3>
             <MarkdownPanel elem='desc' codeText={propItem.description}/>
