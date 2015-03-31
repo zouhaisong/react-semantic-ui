@@ -9,6 +9,8 @@ import less from 'gulp-less'
 import LessPluginAutoPrefix from 'less-plugin-autoprefix'
 import LessPluginPathRedirect from './libs/LessPluginPathRedirect'
 
+import minifyCSS from 'gulp-minify-css';
+
 import watcher from './libs/watcher'
 
 const defaultConfig = {
@@ -69,6 +71,7 @@ const task = gulp.task(TASK_NAME, function () {
     function bundle() {
       return gulp.src(fileConf.entry)
         .pipe(less(fileConf.options))
+        .pipe(whenInProductionDoMinify())
         .pipe(gulp.dest(fileConf.dest))
         .pipe(watcher.pipeTimer(TASK_NAME))
     }
@@ -93,4 +96,11 @@ export default task;
 
 function setOptions(opts) {
   conf = _.merge({}, defaultConfig, opts)
+}
+
+
+function whenInProductionDoMinify() {
+  return process.env.NODE_ENV === 'production' || gutil.env.debug ? minifyCSS({
+    keepBreaks:true
+  }) : gutil.noop()
 }
