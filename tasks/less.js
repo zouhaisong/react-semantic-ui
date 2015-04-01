@@ -18,18 +18,20 @@ const defaultConfig = {
     {
       'entry': 'semantic/semantic.less',
       'src': [
-        'semantic/{,**/}*{.less, .overrides, .variables}'
+        'semantic/{,**/}*.less',
+        'semantic/{,**/}*.variables',
+        'semantic/{,**/}*.overrides'
       ],
       'dest': 'public/assets/css',
       'options': {
-        'watch': false
+        'watch': true
       }
 
     },
     {
       'entry': 'src/docs*/index.less',
       'src': [
-        'src/{,**/}*{.less, .overrides, .variables}'
+        'src/{,**/}*.less'
       ],
       'dest': 'public/assets/css',
       'options': {
@@ -77,6 +79,7 @@ const task = gulp.task(TASK_NAME, function () {
     }
 
     if (fileConf.options.watch && watcher.isWatching()) {
+      console.log(fileConf.src)
       gulp.watch([].concat(fileConf.src), function (evt) {
         gutil.log(evt.path, evt.type);
         bundle();
