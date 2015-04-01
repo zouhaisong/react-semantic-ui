@@ -23,7 +23,7 @@
   "homepage": "https://github.com/morlay/react-semantic-ui",
   "devDependencies": {
     "babel": "^4.7.16",
-    "babel-runtime": "^5.0.0-beta1",
+    "babel-runtime": "^4.7.16",
     "babelify": "^5.0.4",
     "browser-sync": "^2.5.0",
     "browserify": "^9.0.3",
@@ -51,6 +51,7 @@
     "run-sequence": "^1.0.2",
     "semantic-ui-less": "^1.11.6",
     "through": "^2.3.6",
+    "through2": "^0.6.3",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.0.0"
   },
