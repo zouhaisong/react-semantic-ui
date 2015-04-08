@@ -2,10 +2,11 @@ var React = require('react');
 
 var PropTypes = React.PropTypes;
 
-const SVG_STORE_FILE_PATH = '/assets/images/svgs.svg';
+const SVG_STORE_FILE_PATH = '../assets/images/svgs.svg';
 
 /**
  * Symbol. need to update the SVG_STORE_FILE_PATH
+ *
  * see more https://github.com/jonathantneal/svg4everybody
  */
 var Symbol = React.createClass({
