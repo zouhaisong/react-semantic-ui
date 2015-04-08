@@ -32,7 +32,7 @@ const task = gulp.task(TASK_NAME, ()=> {
   }
 
   if (watcher.isWatching()) {
-    gulp.watch([].concat(conf.src),  (evt)=> {
+    gulp.watch(['components/{,**/}examples/*.jsx'].concat(conf.src),  (evt)=> {
       bundle();
     });
   }

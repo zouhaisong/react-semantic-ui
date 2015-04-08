@@ -7,6 +7,7 @@ import browserify from './tasks/browserify'
 import copy from './tasks/copy'
 import docs from './tasks/docs'
 import less from './tasks/less'
+import svgStore from './tasks/svg-store'
 import server from './tasks/server'
 import ghPages from './tasks/gh-pages'
 
@@ -16,6 +17,7 @@ build.setOptions({
   taskQueue: [
     'clean',
     'copy',
+    'svg-store',
     'less',
     'docs',
     'browserify'
