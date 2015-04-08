@@ -56,7 +56,7 @@ var DocSection = React.createClass({
 
   processType(typeObject) {
 
-    if ('value' in typeObject) {
+    if ('value' in typeObject && _.isObject(typeObject.value)) {
       return _(typeObject.value)
         .map((obj)=> {
           return this.processType(obj);
@@ -64,9 +64,10 @@ var DocSection = React.createClass({
         .join(' | ')
     }
 
-    return typeObject.name
+    return typeObject.name || typeObject.value
   }
 
 });
 
 module.exports = DocSection;
+

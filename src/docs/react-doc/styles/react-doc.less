@@ -1,34 +1,59 @@
 .react-doc {
-  position: relative;
-}
-
-.react-doc__doc-menu {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  left: 0;
   right: 0;
   bottom: 0;
-  width: 280px;
-  padding: 20px 0 0 20px;
-  margin: 0;
-  list-style: none;
-  box-sizing: border-box;
+  top: 0;
 }
 
-.react-doc__doc-menu-item {
-  padding: 0;
+.react-doc-menu {
+  position: absolute;
+  padding: 1em 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  color: #d8d8d8;
+  background-color: #1b1c1d;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
   a {
-    display: block;
-    color: #999;
-    text-decoration: none;
-    padding: 8px 12px;
+    color: #ddd;
+    &.active {
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
+  .rd-doc-menu {
+    list-style: none;
+    padding: 0 0.5em;
+  }
+  .rd-doc-menu__item {
+    margin-bottom: 0.25em;
   }
 }
 
-.react-doc__doc-main {
-  background-color: #eee;
-  min-height: 800px;
-  box-sizing: border-box;
-  border:1px solid transparent;
-  border-right: 1px solid #d8d8d8;
-  margin-right: 280px;
+.react-doc-menu__group {
+  margin: 1em;
+}
+
+.react-doc-menu__heading {
+  font-weight: normal;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  text-transform: capitalize;
+}
+
+.react-doc-main {
+  position: absolute;
+  padding: 1em 0;
+  top: 0;
+  left: 200px;
+  bottom: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

@@ -92,12 +92,13 @@ var ReactPlayground = React.createClass({
     }
 
     return (
-      <div {...this.props} block={this.$$block} >
+      <div {...this.props} block={this.$$block}>
         <div elem='example'>
-          <div elem='example-inner' ref="mount" />
+          <div elem='example-inner' ref="mount"/>
         </div>
         {editor}
-        <a elem='code-toggle' mods={modifies} onClick={this.handleCodeModeToggle} href="#">{this.state.mode === this.MODES.NONE ? 'show code' : 'hide code'}</a>
+        <a elem='code-toggle' mods={modifies} onClick={this.handleCodeModeToggle}
+           href="#">{this.state.mode === this.MODES.NONE ? 'show code' : 'hide code'}</a>
       </div>
     );
   },
@@ -111,6 +112,16 @@ var ReactPlayground = React.createClass({
     // this avoids re-displaying the error, which comes after a certain delay
     if (this.state.code !== nextState.code) {
       this.executeCode();
+    }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.code !== nextProps.codeText) {
+      this.setState({
+        code: nextProps.codeText
+      },()=>{
+        this.executeCode();
+      });
     }
   },
 
@@ -134,7 +145,7 @@ var ReactPlayground = React.createClass({
       var compiledCode = this.compileCode();
       if (this.props.renderCode) {
         React.render(
-          <CodeMirrorEditor elem codeText={compiledCode} readOnly={true} />,
+          <CodeMirrorEditor elem codeText={compiledCode} readOnly={true}/>,
           mountNode
         );
       } else {
