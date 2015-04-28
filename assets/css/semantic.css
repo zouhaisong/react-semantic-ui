@@ -1,3 +1,13 @@
+/*!
+ * # Semantic UI - Reset
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
 .ui.animated.button,.ui.circular.image,.ui.circular.images,.ui.horizontal.divider,svg:not(:root){overflow:hidden}
 .ui.rail,hr{box-sizing:content-box}
 img,legend{border:0}
@@ -15,20 +25,6 @@ i.flag:not(.icon),i.icon{text-decoration:inherit;speak:none}
 .ui.loading.form,.ui.loading.segment{text-shadow:none!important;point-events:none}
 .ui.button,.ui.divider,.ui.menu .item{-ms-user-select:none;-moz-user-select:none;-webkit-user-select:none}
 .ui.button,.ui.divider{-webkit-tap-highlight-color:transparent}
-@font-face{font-family:Lato;font-style:normal;font-weight:400;src:local('Lato Regular'),local('Lato-Regular'),url(https://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf)format('truetype')}
-@font-face{font-family:Lato;font-style:normal;font-weight:700;src:local('Lato Bold'),local('Lato-Bold'),url(https://fonts.gstatic.com/s/lato/v11/DvlFBScY1r-FMtZSYIYoYw.ttf)format('truetype')}
-@font-face{font-family:Lato;font-style:italic;font-weight:400;src:local('Lato Italic'),local('Lato-Italic'),url(https://fonts.gstatic.com/s/lato/v11/LqowQDslGv4DmUBAfWa2Vw.ttf)format('truetype')}
-@font-face{font-family:Lato;font-style:italic;font-weight:700;src:local('Lato Bold Italic'),local('Lato-BoldItalic'),url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYEKCWcynf_cDxXwCLxiixG1c.ttf)format('truetype')}
-/*!
- * # Semantic UI - Reset
- * http://github.com/semantic-org/semantic-ui/
- *
- *
- * Copyright 2014 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
 *,:after,:before{box-sizing:inherit}
 html{box-sizing:border-box;font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 input[type=text],input[type=email],input[type=search],input[type=password]{-webkit-appearance:none;-moz-appearance:none}
@@ -2311,8 +2307,8 @@ to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
 .ui.form .field>label{display:block;margin:0 0 .2857rem;color:rgba(0,0,0,.8);font-size:.9285em;font-weight:700;text-transform:none}
 .ui.form .grouped.fields>label{margin:0 0 .2857rem;color:rgba(0,0,0,.8);font-weight:700;text-transform:none}
 .ui.form .inline.fields>label{display:inline-block;vertical-align:middle;margin:0 1em 0 0;color:rgba(0,0,0,.8);font-size:.9285em;font-weight:700;text-transform:none}
-.ui.form .ui.input,.ui.form input:not([type]),.ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=search],.ui.form input[type=password],.ui.form input[type=number],.ui.form input[type=date],.ui.form input[type=datetime-local],.ui.form input[type=tel],.ui.form input[type=time],.ui.form input[type=url],.ui.form textarea{width:100%;vertical-align:top}
-.ui.form input:not([type]),.ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=search],.ui.form input[type=password],.ui.form input[type=number],.ui.form input[type=date],.ui.form input[type=datetime-local],.ui.form input[type=tel],.ui.form input[type=time],.ui.form input[type=url]{font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;margin:0;outline:0;-webkit-appearance:none;tap-highlight-color:rgba(255,255,255,0);line-height:1.2142em;padding:.67861em 1em;font-size:1em;background:#fff;border:1px solid rgba(39,41,43,.15);color:rgba(0,0,0,.8);border-radius:.2857rem;box-shadow:0 0 0 0 transparent inset;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease,border-color .2s ease}
+.ui.form .ui.input,.ui.form input:not([type]),.ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=search],.ui.form input[type=password],.ui.form input[type=date],.ui.form input[type=datetime-local],.ui.form input[type=tel],.ui.form input[type=time],.ui.form input[type=url],.ui.form input[type=number],.ui.form textarea{width:100%;vertical-align:top}
+.ui.form input:not([type]),.ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=search],.ui.form input[type=password],.ui.form input[type=date],.ui.form input[type=datetime-local],.ui.form input[type=tel],.ui.form input[type=time],.ui.form input[type=url],.ui.form input[type=number]{font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;margin:0;outline:0;-webkit-appearance:none;tap-highlight-color:rgba(255,255,255,0);line-height:1.2142em;padding:.67861em 1em;font-size:1em;background:#fff;border:1px solid rgba(39,41,43,.15);color:rgba(0,0,0,.8);border-radius:.2857rem;box-shadow:0 0 0 0 transparent inset;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease,border-color .2s ease}
 .ui.form textarea,.ui.textarea{margin:0;-webkit-appearance:none;tap-highlight-color:rgba(255,255,255,0);padding:.78571em 1em;background:#fff;border:1px solid rgba(39,41,43,.15);outline:0;color:rgba(0,0,0,.8);font-size:1em;height:12em;min-height:8em;max-height:24em;line-height:1.2857;resize:vertical}
 .ui.form .grouped.fields>label,.ui.form .inline.field>.ui.input,.ui.form .inline.field>input,.ui.form .inline.fields .field>.ui.input,.ui.form .inline.fields .field>input{font-size:.9285em}
 .ui.form input[type=checkbox],.ui.form textarea{vertical-align:top}
@@ -2336,13 +2332,13 @@ to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
 .ui.form .error ::-moz-placeholder{color:#e38585}
 .ui.form .error :focus::-webkit-input-placeholder{color:#de7171}
 .ui.form .error :focus::-moz-placeholder{color:#de7171}
-.ui.form input:not([type]):focus,.ui.form input[type=text]:focus,.ui.form input[type=email]:focus,.ui.form input[type=search]:focus,.ui.form input[type=password]:focus,.ui.form input[type=number]:focus,.ui.form input[type=date]:focus,.ui.form input[type=datetime-local]:focus,.ui.form input[type=tel]:focus,.ui.form input[type=time]:focus,.ui.form input[type=url]:focus{color:rgba(0,0,0,.85);border-color:rgba(39,41,43,.3);border-radius:0 .2857rem .2857rem 0;background:#fff;box-shadow:1px 0 0 0 rgba(39,41,43,.3)inset}
+.ui.form input:not([type]):focus,.ui.form input[type=text]:focus,.ui.form input[type=email]:focus,.ui.form input[type=search]:focus,.ui.form input[type=password]:focus,.ui.form input[type=date]:focus,.ui.form input[type=datetime-local]:focus,.ui.form input[type=tel]:focus,.ui.form input[type=time]:focus,.ui.form input[type=url]:focus,.ui.form input[type=number]:focus{color:rgba(0,0,0,.85);border-color:rgba(39,41,43,.3);border-radius:0 .2857rem .2857rem 0;background:#fff;box-shadow:1px 0 0 0 rgba(39,41,43,.3)inset}
 .ui.form textarea:focus{color:rgba(0,0,0,.85);border-color:rgba(39,41,43,.3);border-radius:0 .2857rem .2857rem 0;background:#fff;box-shadow:1px 0 0 0 rgba(39,41,43,.3)inset;-webkit-appearance:none}
 .ui.form.error .error.message,.ui.form.success .success.message,.ui.form.warning .warning.message{display:block}
 .ui.form .field.error .input,.ui.form .field.error label,.ui.form .fields.error .field .input,.ui.form .fields.error .field label{color:#d95c5c}
 .ui.form .field.error .corner.label,.ui.form .fields.error .field .corner.label{border-color:#d95c5c;color:#fff}
-.ui.form .field.error input:not([type]),.ui.form .field.error input[type=text],.ui.form .field.error input[type=email],.ui.form .field.error input[type=search],.ui.form .field.error input[type=password],.ui.form .field.error input[type=number],.ui.form .field.error input[type=date],.ui.form .field.error input[type=datetime-local],.ui.form .field.error input[type=tel],.ui.form .field.error input[type=time],.ui.form .field.error input[type=url],.ui.form .field.error select,.ui.form .field.error textarea,.ui.form .fields.error .field input:not([type]),.ui.form .fields.error .field input[type=text],.ui.form .fields.error .field input[type=email],.ui.form .fields.error .field input[type=search],.ui.form .fields.error .field input[type=password],.ui.form .fields.error .field input[type=number],.ui.form .fields.error .field input[type=date],.ui.form .fields.error .field input[type=datetime-local],.ui.form .fields.error .field input[type=tel],.ui.form .fields.error .field input[type=time],.ui.form .fields.error .field input[type=url],.ui.form .fields.error .field select,.ui.form .fields.error .field textarea{background:#fff0f0;border-color:#dbb1b1;color:#d95c5c;border-radius:0 .2857rem .2857rem 0;box-shadow:2px 0 0 0 #d95c5c inset}
-.ui.form .field.error input:not([type]):focus,.ui.form .field.error input[type=text]:focus,.ui.form .field.error input[type=email]:focus,.ui.form .field.error input[type=search]:focus,.ui.form .field.error input[type=password]:focus,.ui.form .field.error input[type=number]:focus,.ui.form .field.error input[type=date]:focus,.ui.form .field.error input[type=datetime-local]:focus,.ui.form .field.error input[type=tel]:focus,.ui.form .field.error input[type=time]:focus,.ui.form .field.error input[type=url]:focus,.ui.form .field.error select:focus,.ui.form .field.error textarea:focus{background:#fff0f0;border-color:#dbb1b1;color:#dc6868;-webkit-appearance:none;box-shadow:2px 0 0 0 #dc6868 inset}
+.ui.form .field.error input:not([type]),.ui.form .field.error input[type=text],.ui.form .field.error input[type=email],.ui.form .field.error input[type=search],.ui.form .field.error input[type=password],.ui.form .field.error input[type=date],.ui.form .field.error input[type=datetime-local],.ui.form .field.error input[type=tel],.ui.form .field.error input[type=time],.ui.form .field.error input[type=url],.ui.form .field.error input[type=number],.ui.form .field.error select,.ui.form .field.error textarea,.ui.form .fields.error .field input:not([type]),.ui.form .fields.error .field input[type=text],.ui.form .fields.error .field input[type=email],.ui.form .fields.error .field input[type=search],.ui.form .fields.error .field input[type=password],.ui.form .fields.error .field input[type=date],.ui.form .fields.error .field input[type=datetime-local],.ui.form .fields.error .field input[type=tel],.ui.form .fields.error .field input[type=time],.ui.form .fields.error .field input[type=url],.ui.form .fields.error .field input[type=number],.ui.form .fields.error .field select,.ui.form .fields.error .field textarea{background:#fff0f0;border-color:#dbb1b1;color:#d95c5c;border-radius:0 .2857rem .2857rem 0;box-shadow:2px 0 0 0 #d95c5c inset}
+.ui.form .field.error input:not([type]):focus,.ui.form .field.error input[type=text]:focus,.ui.form .field.error input[type=email]:focus,.ui.form .field.error input[type=search]:focus,.ui.form .field.error input[type=password]:focus,.ui.form .field.error input[type=date]:focus,.ui.form .field.error input[type=datetime-local]:focus,.ui.form .field.error input[type=tel]:focus,.ui.form .field.error input[type=time]:focus,.ui.form .field.error input[type=url]:focus,.ui.form .field.error input[type=number]:focus,.ui.form .field.error select:focus,.ui.form .field.error textarea:focus{background:#fff0f0;border-color:#dbb1b1;color:#dc6868;-webkit-appearance:none;box-shadow:2px 0 0 0 #dc6868 inset}
 .ui.loading.search .input>.icon:after,.ui.tab.loading.segment:after,.ui.tab.loading:after{-webkit-animation:button-spin .6s linear;border-color:#aaa transparent transparent;box-shadow:0 0 0 1px transparent}
 .ui.form .field.error .checkbox .box:after,.ui.form .field.error .checkbox label:after,.ui.form .field.error .checkbox:not(.toggle):not(.slider) .box,.ui.form .field.error .checkbox:not(.toggle):not(.slider) label,.ui.form .fields.error .field .checkbox .box:after,.ui.form .fields.error .field .checkbox label:after,.ui.form .fields.error .field .checkbox:not(.toggle):not(.slider) .box,.ui.form .fields.error .field .checkbox:not(.toggle):not(.slider) label{color:#d95c5c}
 .ui.form .field.error select{-webkit-appearance:menulist-button}
