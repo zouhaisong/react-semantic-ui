@@ -2,4 +2,4 @@
 
 ** In process **
 
-see preview http://morlay.github.io/react-semantic-ui/docs/
+see preview http://morlay.github.io/react-semantic-ui/components-doc/
