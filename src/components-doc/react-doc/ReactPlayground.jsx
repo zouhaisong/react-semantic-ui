@@ -40,7 +40,8 @@ var ReactPlayground = React.createClass({
   getInitialState() {
     return {
       mode: this.MODES.NONE,
-      code: this.props.codeText
+      code: this.props.codeText,
+      device: 'iphone4'
     };
   },
 
@@ -91,16 +92,42 @@ var ReactPlayground = React.createClass({
       modifies.open = true;
     }
 
+    var deviceMods = {};
+
+    deviceMods[this.state.device] = true;
+
+    var devices = [
+      'iphone4',
+      'iphone5',
+      'iphone6',
+      'iphone6s',
+      'nexus4',
+      'nexus5'
+    ];
+
     return (
       <div {...this.props} block={this.$$block}>
         <div elem='example'>
-          <div elem='example-inner' ref="mount"/>
+          <select elem='select' onChange={this.setDevice}>
+            {_.map(devices, function (value, key) {
+              return (<option key={key} value={value}>{value}</option>)
+            })}
+          </select>
+          <div elem='example-inner'>
+            <div elem='device' mods={deviceMods} ref="mount"/>
+          </div>
         </div>
         {editor}
         <a elem='code-toggle' mods={modifies} onClick={this.handleCodeModeToggle}
            href="#">{this.state.mode === this.MODES.NONE ? 'show code' : 'hide code'}</a>
       </div>
     );
+  },
+
+  setDevice(evt) {
+    this.setState({
+      device: evt.target.value
+    })
   },
 
   componentDidMount() {
@@ -119,7 +146,7 @@ var ReactPlayground = React.createClass({
     if (this.state.code !== nextProps.codeText) {
       this.setState({
         code: nextProps.codeText
-      },()=>{
+      }, ()=> {
         this.executeCode();
       });
     }

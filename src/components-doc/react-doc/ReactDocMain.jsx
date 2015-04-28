@@ -4,14 +4,13 @@ var _ = require('lodash');
 var DocSection = require('./DocSection.jsx');
 var ReactBemRender = require('react-bem-render');
 
+var { State } = require('react-router');
+
 var ReactDocMain = React.createClass({
   mixins: [
+    State,
     ReactBemRender
   ],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
 
   propTypes: {
     globalRequire: React.PropTypes.func,
@@ -28,7 +27,7 @@ var ReactDocMain = React.createClass({
 
   renderDocMain() {
 
-    var params = this.context.router.getCurrentParams();
+    var params = this.getParams();
 
     var docSectionList = _(this.props.info)
       .filter((item)=> {
@@ -38,7 +37,7 @@ var ReactDocMain = React.createClass({
         if (params.componentName) {
           return item.name === params.componentName;
         }
-        return String(item.module).indexOf(params.groupName) > -1;
+        return String(item.module).indexOf(params.groupName.split('.').join('/')) > -1;
       })
       .values()
       .map((item, idx)=> {

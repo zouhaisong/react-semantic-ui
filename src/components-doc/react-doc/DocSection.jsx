@@ -43,7 +43,10 @@ var DocSection = React.createClass({
         return (
           <div block='doc-section-prop' key={idx}>
             <h3 elem='title'> Prop: {key}
-              <small elem='sub-title'> Type: {this.processType(propItem.type)}</small>
+              {propItem.required ? <span> *</span> : null}
+              <small elem='sub-title'>
+                {this.processType(propItem.type)}
+              </small>
             </h3>
             <MarkdownPanel elem='desc' codeText={propItem.description}/>
             {this.renderExamples(propItem)}
@@ -55,16 +58,38 @@ var DocSection = React.createClass({
   },
 
   processType(typeObject) {
+    if (_.isObject(typeObject)) {
+      switch (typeObject.name) {
 
-    if ('value' in typeObject && _.isObject(typeObject.value)) {
-      return _(typeObject.value)
-        .map((obj)=> {
-          return this.processType(obj);
-        })
-        .join(' | ')
+        case 'shape':
+
+          return (
+            <table>
+              { _(typeObject.value)
+                .keys()
+                .map((key, idx)=> {
+                  return (
+                    <tr key={idx}>
+                      <td>{key}</td>
+                      <td>{this.processType(typeObject.value[key])}</td>
+                    </tr>)
+                })
+                .value()}
+            </table>);
+
+        case 'enum':
+        case 'union':
+
+          return _(typeObject.value)
+            .map((obj)=> {
+              return this.processType(obj);
+            })
+            .join(' | ');
+
+        default:
+          return ('Type:' + typeObject.name) || ('Value' + typeObject.value);
+      }
     }
-
-    return typeObject.name || typeObject.value
   }
 
 });

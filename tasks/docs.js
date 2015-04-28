@@ -12,7 +12,7 @@ const defaultConfig = {
     '!components/{,**/}__tests__/*.jsx',
     '!components/{,**/}examples/*.jsx'
   ],
-  dest:'src/docs/data/'
+  dest:'src/components-doc/data/'
 };
 
 let conf;

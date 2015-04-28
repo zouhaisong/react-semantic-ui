@@ -1,12 +1,12 @@
-import gutil from 'gulp-util'
-import fs from 'fs'
-import _ from 'lodash'
-import docgen from 'react-docgen'
-import doctrine from 'doctrine'
-import path from 'path'
-import through from 'through2'
+var gutil = require('gulp-util');
+var fs = require('fs');
+var _ = require('lodash');
+var docgen = require('react-docgen');
+var doctrine = require('doctrine');
+var path = require('path');
+var through = require('through2');
 
-const PLUGIN_NAME = 'react-doc';
+var PLUGIN_NAME = 'react-doc';
 
 module.exports = function () {
 
@@ -17,8 +17,8 @@ module.exports = function () {
   function endStream(cb) {
 
     var jsonFile = new gutil.File({
-      path: PLUGIN_NAME + '.json',
-      contents: new Buffer(JSON.stringify(result, null, 2))
+      path: PLUGIN_NAME + '.js',
+      contents: new Buffer('module.exports =' + JSON.stringify(result, null, 2))
     });
 
     var requireListFile = new gutil.File({
@@ -37,7 +37,7 @@ module.exports = function () {
 
     try {
 
-      let moduleInfo = docgen.parse(String(file.contents));
+      var moduleInfo = docgen.parse(String(file.contents));
 
       if (moduleInfo) {
         result[getModuleName(file)] = _.merge(descriptionProcess(file.path, moduleInfo), getInfoByVinylFile(file))
@@ -68,7 +68,7 @@ function descriptionProcess(filename, obj) {
 
   obj = obj || {};
 
-  let descObj = descriptionExtract(obj.description);
+  var descObj = descriptionExtract(obj.description);
 
   if (descObj) {
 
@@ -78,7 +78,7 @@ function descriptionProcess(filename, obj) {
     };
 
     if (_.isObject(obj.props)) {
-      _.forEach(_.keys(obj.props), (key)=> {
+      _.forEach(_.keys(obj.props), function (key) {
         obj.props[key] = descriptionProcess(filename, obj.props[key]);
       });
     }
@@ -105,7 +105,7 @@ function descriptionExtract(descriptionString) {
 }
 
 function pickExampleFromTags(tags, filename) {
-  return _.reduce(tags, (exampleList, tagItem)=> {
+  return _.reduce(tags, function (exampleList, tagItem) {
     return exampleList.concat(getExample(tagItem, filename))
   }, [])
 }
@@ -114,8 +114,8 @@ function getExample(tagItem, filename) {
 
   filename = filename || process.cwd();
 
-  let contents;
-  let exampleFile = null;
+  var contents;
+  var exampleFile = null;
 
   if (tagItem.title === 'exampleFile') {
     exampleFile = path.resolve(path.dirname(filename), _.trim(tagItem['description']));
@@ -124,9 +124,9 @@ function getExample(tagItem, filename) {
     contents = tagItem['description']
   }
 
-  var requireList = _.map(contents.match(/require\((\S+)\)/gm) || [], (item)=> {
-    let resolvedPathName;
-    let pathName = String(item.replace(/require\(['"](\S+)['"]\)/gm, '$1'));
+  var requireList = _.map(contents.match(/require\((\S+)\)/gm) || [], function (item) {
+    var resolvedPathName;
+    var pathName = String(item.replace(/require\(['"](\S+)['"]\)/gm, '$1'));
 
     if (_.startsWith(pathName, './') || _.startsWith(pathName, '../')) {
       resolvedPathName = path.resolve(path.dirname(exampleFile || filename), pathName);
@@ -138,14 +138,14 @@ function getExample(tagItem, filename) {
     return {
       path: resolvedPathName,
       src: item,
-      dest: 'require("' + resolvedPathName + '")'
+      dest: 'require("' + path.relative(process.cwd(), resolvedPathName) + '")'
     }
 
   });
 
   return {
     requireList: requireList,
-    contents: _.reduce(requireList, (contents, requireItem) => {
+    contents: _.reduce(requireList, function (contents, requireItem) {
       return contents.replace(requireItem.src, requireItem.dest)
     }, contents)
   };
@@ -160,12 +160,12 @@ function getRequireListFileContents(result) {
   findExample(result);
 
   function findExample(obj) {
-    _.forEach(_.keys(obj), (key)=> {
+    _.forEach(_.keys(obj), function (key) {
       if (_.isPlainObject(obj[key])) {
         findExample(obj[key])
       } else if (key === 'examples') {
-        _.forEach(obj[key], (exampleItem)=> {
-          _.forEach(exampleItem.requireList, (requireItem) => {
+        _.forEach(obj[key], function (exampleItem) {
+          _.forEach(exampleItem.requireList, function (requireItem) {
             requireList[requireItem.path] = requireItem;
           })
         })
@@ -175,8 +175,13 @@ function getRequireListFileContents(result) {
 
   return _(requireList)
     .values()
-    .map((requireItem) => {
-      return 'require("' + requireItem.path + '");';
+    .map(function (requireItem) {
+      return [
+        'require("',
+        path.relative(process.cwd(), requireItem.path),
+        '"',
+        ');'
+      ].join('');
     })
     .push('module.exports = require;')
     .join('\n');

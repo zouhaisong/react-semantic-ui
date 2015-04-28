@@ -29,7 +29,7 @@ const defaultConfig = {
 
     },
     {
-      'entry': 'src/docs*/index.less',
+      'entry': 'src/components-doc*/index.less',
       'src': [
         'src/{,**/}*.less'
       ],

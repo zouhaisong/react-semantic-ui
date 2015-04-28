@@ -1,25 +1,23 @@
-var React = require('react');
-var ReactBemRender = require('react-bem-render');
-var _ = require('lodash');
+import React from 'react';
+import ReactBemRender from 'react-bem-render';
+import _ from 'lodash';
 
-var ReactDocMenu = require('./react-doc/ReactDocMenu.jsx');
-var ReactDocMain = require('./react-doc/ReactDocMain.jsx');
+import ReactDocMenu from './react-doc/ReactDocMenu.jsx';
+import ReactDocMain from './react-doc/ReactDocMain.jsx';
 
-var info = require('./data/react-doc.json');
-var globalRequire = require('./data/react-doc.jsx');
+import info from './data/react-doc.js';
+import globalRequire from './data/react-doc.jsx';
 
-var { run, Route, DefaultRoute, RouteHandler } = require('react-router');
+import { run, Route, DefaultRoute, RouteHandler } from 'react-router';
 
 const ReactDoc = React.createClass({
-
   mixins: [
     ReactBemRender
   ],
-
   $render() {
     return (
-      <div {...this.props} block={this.$$block}>
-        <ReactDocMenu elem info={info}/>
+      <div block={this.$$block}>
+        <ReactDocMenu elem info={info} baseDir={'src/js/'}/>
         <RouteHandler info={info} globalRequire={globalRequire}/>
       </div>
     );

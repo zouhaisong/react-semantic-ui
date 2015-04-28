@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import watcher from './tasks/libs/watcher';
 
+import symlink from './tasks/symlink'
 import clean from './tasks/clean'
 import browserify from './tasks/browserify'
 import copy from './tasks/copy'
@@ -15,6 +16,7 @@ import build from './tasks/build'
 
 build.setOptions({
   taskQueue: [
+    'symlink',
     'clean',
     'copy',
     'svg-store',

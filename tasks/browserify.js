@@ -31,7 +31,7 @@ const defaultConfig = {
       }
     },
     {
-      'entry': 'src/docs/index.jsx',
+      'entry': 'src/components-doc/index.jsx',
       'dest': 'public/assets/js',
       'options': {
         'external': vendors
