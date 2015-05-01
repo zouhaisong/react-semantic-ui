@@ -1,5 +1,5 @@
-var React = require('react');
-var Button = require('../Button.jsx');
+import React from 'react'
+import Button from '../Button.jsx'
 
 var instance = (
   <div>

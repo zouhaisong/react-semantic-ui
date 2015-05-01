@@ -124,23 +124,29 @@ function getExample(tagItem, filename) {
     contents = tagItem['description']
   }
 
-  var requireList = _.map(contents.match(/require\((\S+)\)/gm) || [], function (item) {
-    var resolvedPathName;
-    var pathName = String(item.replace(/require\(['"](\S+)['"]\)/gm, '$1'));
+  var imports = [];
 
-    if (_.startsWith(pathName, './') || _.startsWith(pathName, '../')) {
-      resolvedPathName = path.resolve(path.dirname(exampleFile || filename), pathName);
-    } else {
-      resolvedPathName = pathName;
-    }
+  var es6Way = contents.match(/import[^'"]+(\S+)/gm);
+  var cjsWay = contents.match(/require\((\S+)\)/gm);
 
-    // todo support es6
+  if (es6Way) {
+    imports = imports.concat(es6Way);
+  }
+  if (cjsWay) {
+    imports = imports.concat(cjsWay);
+  }
+
+  var requireList = _.map(imports, (item)=> {
+    var resolvedPathName = resolvePathName(item, {
+      exampleFile: exampleFile,
+      filename: filename
+    });
+
     return {
       path: resolvedPathName,
       src: item,
-      dest: 'require("' + path.relative(process.cwd(), resolvedPathName) + '")'
+      dest: item.replace(/['"](\S+)['"]/gm, JSON.stringify(path.relative(process.cwd(), resolvedPathName)))
     }
-
   });
 
   return {
@@ -149,6 +155,24 @@ function getExample(tagItem, filename) {
       return contents.replace(requireItem.src, requireItem.dest)
     }, contents)
   };
+}
+
+
+function resolvePathName(item, options = {}) {
+  var resolvedPathName;
+  var pathName = item.match(/['"](\S+)['"]/)[1];
+
+  if (_.startsWith(pathName, './') || _.startsWith(pathName, '../')) {
+    resolvedPathName = path.resolve(path.dirname(options.exampleFile || options.filename), pathName);
+  } else {
+    resolvedPathName = pathName;
+  }
+
+  if (_.contains(['.js', '.jsx', '.es', '.es6'], path.extname(resolvedPathName))) {
+    return resolvedPathName.slice(0, -path.extname(resolvedPathName).length);
+  }
+
+  return resolvedPathName;
 }
 
 

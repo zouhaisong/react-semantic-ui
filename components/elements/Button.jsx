@@ -1,5 +1,9 @@
-import React from 'react'
-import classnames from 'classnames';
+
+import React, {
+  creatElement
+  } from 'react'
+
+import classNames from 'classnames';
 
 import Icon from 'components/elements/Icon'
 
@@ -87,7 +91,7 @@ const Button = React.createClass({
     delete classes[undefined];
 
     return (
-      <button className={classnames(classes)}>
+      <button className={classNames(classes)}>
         { props.icon ? <Icon type={props.icon}/> : '' }
         { props.children }
       </button>

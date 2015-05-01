@@ -1,7 +1,7 @@
-var React = require('react');
-var Icon = require('../Icon.jsx');
+import React from 'react'
+import Icon from '../Icon'
 
-var instance = (
+const instance = (
   <div>
     <Icon type="cloud"/>
     <Icon type="code"/>

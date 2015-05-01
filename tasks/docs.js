@@ -12,7 +12,12 @@ const defaultConfig = {
     '!components/{,**/}__tests__/*.jsx',
     '!components/{,**/}examples/*.jsx'
   ],
-  dest:'src/components-doc/data/'
+  watch: [
+    'components/{,**/}*.jsx',
+    '!components/{,**/}__tests__/*.jsx',
+    'components/{,**/}examples/*.jsx'
+  ],
+  dest: 'src/components-doc/data/'
 };
 
 let conf;
@@ -32,7 +37,7 @@ const task = gulp.task(TASK_NAME, ()=> {
   }
 
   if (watcher.isWatching()) {
-    gulp.watch(['components/{,**/}examples/*.jsx'].concat(conf.src),  (evt)=> {
+    gulp.watch(conf.watch, (evt)=> {
       bundle();
     });
   }

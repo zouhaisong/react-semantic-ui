@@ -1,7 +1,7 @@
-var React = require('react');
-var Button = require('../Button.jsx');
+import React from 'react'
+import Button from '../Button.jsx'
 
-var instance = (
+const instance = (
   <div>
     <Button color="black"> black </Button>
     <Button color="yellow"> yellow </Button>

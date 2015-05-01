@@ -2,7 +2,7 @@ var React = require('react');
 var _ = require('lodash');
 
 var CodeMirrorEditor = require('./CodeMirrorEditor.jsx');
-var JSXTransformer = require('react/dist/JSXTransformer');
+var babel = require('babel');
 
 var selfCleaningTimeout = {
   componentDidUpdate() {
@@ -32,7 +32,7 @@ var ReactPlayground = React.createClass({
   getDefaultProps() {
     return {
       transformer(code) {
-        return JSXTransformer.transform(code).code;
+        return babel.transform(code).code;
       }
     };
   },
@@ -113,6 +113,7 @@ var ReactPlayground = React.createClass({
               return (<option key={key} value={value}>{value}</option>)
             })}
           </select>
+
           <div elem='example-inner'>
             <div elem='device' mods={deviceMods} ref="mount"/>
           </div>
