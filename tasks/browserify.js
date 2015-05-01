@@ -37,7 +37,10 @@ const defaultConfig = {
         'external': vendors
       }
     }
-  ]
+  ],
+  options: {
+    'extensions': ['.jsx']
+  }
 };
 
 let conf;

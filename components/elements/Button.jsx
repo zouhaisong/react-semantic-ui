@@ -1,14 +1,14 @@
-var React = require('react');
-var classnames = require('classnames');
+import React from 'react'
+import classnames from 'classnames';
 
-var Icon = require('./Icon.jsx');
+import Icon from 'components/elements/Icon'
 
-var PropTypes = React.PropTypes;
+const PropTypes = React.PropTypes;
 
 /**
  * Button.
  */
-var Button = React.createClass({
+const Button = React.createClass({
 
   propTypes: {
     /**
@@ -42,7 +42,7 @@ var Button = React.createClass({
 
      var instance = (
      <div>
-       <Button fluid> black </Button>
+     <Button fluid> black </Button>
      </div> );
 
      React.render(instance, mountNode);
@@ -58,8 +58,8 @@ var Button = React.createClass({
 
      var instance = (
      <div>
-       <Button icon='cloud' circular> circular button </Button>
-       <Button icon='cloud' circular/>
+     <Button icon='cloud' circular> circular button </Button>
+     <Button icon='cloud' circular/>
      </div> );
 
      React.render(instance, mountNode);
@@ -95,5 +95,5 @@ var Button = React.createClass({
   }
 });
 
-module.exports = Button;
+export default Button;
 

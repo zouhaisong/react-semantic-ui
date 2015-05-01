@@ -1,5 +1,5 @@
 import React from 'react/addons'
-import Icon from '../Icon.jsx'
+import Icon from '../Icon'
 import { assert } from 'chai'
 
 const TestUtils = React.addons.TestUtils;

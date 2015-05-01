@@ -1,12 +1,12 @@
-var React = require('react');
-var classnames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
-var PropTypes = React.PropTypes;
+const PropTypes = React.PropTypes;
 
 /**
  * Icon.
  */
-var Icon = React.createClass({
+const Icon = React.createClass({
   propTypes: {
     /**
      * type name of Icon, will same as the filename.
@@ -25,10 +25,10 @@ var Icon = React.createClass({
     classes['icon'] = true;
 
     return (
-      <i className={classnames(classes)}/>
+      <i className={classNames(classes)}/>
     )
   }
 });
 
-module.exports = Icon;
+export default Icon;
 

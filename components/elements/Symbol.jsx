@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react'
 
-var PropTypes = React.PropTypes;
+const PropTypes = React.PropTypes;
 
 const SVG_STORE_FILE_PATH = '../assets/images/svgs.svg';
 
@@ -9,7 +9,7 @@ const SVG_STORE_FILE_PATH = '../assets/images/svgs.svg';
  *
  * see more https://github.com/jonathantneal/svg4everybody
  */
-var Symbol = React.createClass({
+const Symbol = React.createClass({
   propTypes: {
     /**
      * type name of Symbol, will same as the filename.
@@ -32,7 +32,7 @@ var Symbol = React.createClass({
   }
 });
 
-module.exports = Symbol;
+export default Symbol;
 
 
 
