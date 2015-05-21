@@ -1,13 +1,26 @@
 import React from 'react';
+import Reflux from 'reflux';
 import classNames from 'classnames';
 
-import budgetApi from '../api/budget';
-
 import MoneyBanner from './MoneyBanner';
+import MoneyBanner2 from './MoneyBanner2';
+
+import homeActions from './actions';
+import homeStore from './stores/homeStore'
 
 const PropTypes = React.PropTypes;
 
 const HomePage = React.createClass({
+
+  mixins: [
+    Reflux.listenTo(homeStore, 'onHomeStoreUpdate')
+  ],
+
+  onHomeStoreUpdate(){
+    this.setState({
+      info: homeStore.info
+    });
+  },
 
   getInitialState(){
     return {
@@ -16,24 +29,12 @@ const HomePage = React.createClass({
   },
 
   componentWillMount(){
-
-    console.log('componentWillMount')
-
-    budgetApi.fetchInfoByName('Lin,Fan')
-      .then((result)=> {
-        this.setState({
-          info: result
-        });
-      })
-      .catch((err)=> {
-        console.log(err)
-      });
-
+    homeActions.fetchInfoByName('Lin,Fan');
   },
 
   render(){
 
-    console.log('render', this.state.info)
+    console.log('render', this.state.info);
 
     var info = this.state.info;
 
@@ -48,6 +49,7 @@ const HomePage = React.createClass({
             balance={info.balance}
             overrun={info.overrun}
             />
+          <MoneyBanner2/>
         </main>
       </div>
     );
