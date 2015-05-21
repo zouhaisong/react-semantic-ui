@@ -12,7 +12,7 @@ import watcher from './libs/watcher'
 const defaultConfig = {
   'files': [
     {
-      'src': 'src/components-doc*/index.html',
+      'src': 'src/{,**/}index.html',
       'dest': 'public/'
     },
     {
