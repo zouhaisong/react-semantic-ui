@@ -70,6 +70,7 @@
     "numeral": "^1.5.3",
     "react": "^0.13.1",
     "react-bem-render": "^0.2.1",
+    "react-select": "^0.4.9",
     "superagent": "^1.2.0"
   }
 }

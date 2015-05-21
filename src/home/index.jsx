@@ -2,6 +2,8 @@ import React from 'react';
 import Reflux from 'reflux';
 import classNames from 'classnames';
 
+import ReactSelect from 'react-select';
+
 import MoneyBanner from './MoneyBanner';
 import MoneyBanner2 from './MoneyBanner2';
 
@@ -32,6 +34,26 @@ const HomePage = React.createClass({
     homeActions.fetchInfoByName('Lin,Fan');
   },
 
+  getOptions(input, callback) {
+    homeActions.getNameListBy
+      .triggerPromise(input)
+      .then((result)=> {
+        callback(null, {
+          options: result.map((value)=> {
+            return {
+              label: value,
+              value: value
+            }
+          }),
+          complete: true
+        })
+      });
+  },
+
+  onSelectChange(value){
+    homeActions.fetchInfoByName(value);
+  },
+
   render(){
 
     console.log('render', this.state.info);
@@ -41,7 +63,15 @@ const HomePage = React.createClass({
     return (
       <div className='home-page'>
         <header className='home-page__header'>
-          This is Logo
+          <span className='home-page__logo'>
+            This is Logo
+          </span>
+          <span className='home-page__select'>
+            <ReactSelect
+              onChange={this.onSelectChange}
+              asyncOptions={this.getOptions}
+              />
+          </span>
         </header>
         <main className='home-page__main'>
           <MoneyBanner

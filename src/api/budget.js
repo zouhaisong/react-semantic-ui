@@ -7,7 +7,19 @@ export default {
     return new Promise((resolve, reject)=> {
       superAgent
         .get(`${BASE_URL}/service/accounts/name/${name}`)
-        .set('contentType','')
+        .end((err, res)=> {
+          if (err) {
+            reject(err)
+          }
+          resolve(res.body)
+        })
+    })
+  },
+
+  getNameListBy(input){
+    return new Promise((resolve, reject)=> {
+      superAgent
+        .get(`${BASE_URL}/service/names/${input}`)
         .end((err, res)=> {
           if (err) {
             reject(err)
@@ -16,4 +28,5 @@ export default {
         })
     })
   }
+
 };
