@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import _ from 'lodash';
 import path from 'path';
-import reactDocGen from './libs/gulp-react-doc';
+import gulpDocGenUi from 'react-docgen-ui';
 
 import watcher from './libs/watcher'
 
@@ -30,14 +30,16 @@ const task = gulp.task(TASK_NAME, ()=> {
 
   function bundle() {
     return gulp.src(conf.src)
-      .pipe(reactDocGen())
+      .pipe(gulpDocGenUi({
+        cwd: process.cwd()
+      }))
       .on('error', gutil.log.bind(gulp))
       .pipe(gulp.dest(conf.dest))
       .pipe(watcher.pipeTimer(TASK_NAME))
   }
 
   if (watcher.isWatching()) {
-    gulp.watch(conf.watch, (evt)=> {
+    gulp.watch([].concat(conf.src), (evt)=> {
       bundle();
     });
   }
